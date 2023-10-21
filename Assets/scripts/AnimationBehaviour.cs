@@ -44,6 +44,6 @@ public class AnimationBehaviour : StateMachineBehaviour
 
     void UpdateAnimation(string animationName)
     {
-        Debug.Log("AnimationBehaviour.UpdateAnimation: " + animationName);
+        // Debug.Log("AnimationBehaviour.UpdateAnimation: " + animationName);
     }
 }

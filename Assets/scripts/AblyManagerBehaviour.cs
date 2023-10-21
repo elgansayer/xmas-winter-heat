@@ -2,24 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-﻿using System.Linq;
 using System.Threading;
 using IO.Ably;
 using IO.Ably.Realtime;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 public class AblyManagerBehaviour : MonoBehaviour
 {
     private AblyRealtime _ably;
     private ClientOptions _clientOptions;
 
-    // It's recommended to use other forms of authentication. E.g. JWT, Token Auth 
-    // This is to avoid exposing root api key to a client
     private static string _apiKey = "U0ALVg.DLhdIQ:uNrgKHf61SiaJH5XFjHV5bMYCugNvi8vzfZyMNJNp20";
+
+    private PlayerHandler _playerHandler;
 
     void Start()
     {
         InitializeAbly();
+        // Game the player handler game object
+        this._playerHandler = GameObject.Find("PlayerHandler").GetComponent<PlayerHandler>();
+        // playerHandlerGameObject.
     }
 
     private void InitializeAbly()
@@ -72,30 +75,22 @@ public class AblyManagerBehaviour : MonoBehaviour
     {
         Debug.Log($"Subscribing to channels");
 
-        var channelNames = string.Join(", ", _ably.Channels.Select(channel => channel.Name));
-        Debug.Log($"Channel Names - <b>{channelNames}</b>");
-
-        // gameAction , clicks
-        _ably.Channels.Get("gameAction").Presence.Subscribe(message =>
-        {
-            Debug.Log($" Received gameAction <b>{message}</b> from channel <b>GameAction</b>");
-        });
-
         _ably.Channels.Get("gameAction").Subscribe("clicks", (msg) =>
-        {
-            Debug.Log($" Received gameAction <b>{msg}</b> from channel <b>GameAction</b>");
-        });
+        {     
+            Debug.Log($"gameAction clicks received");
+            
+            string jsonString = msg.Data.ToString();
+            // Convert json to IPlayerData
+            // IPlayerData playerData = JsonUtility.FromJson<IPlayerData>(jsonString);
+            IPlayerData playerData = JsonConvert.DeserializeObject<IPlayerData>(jsonString);
+                
+            this._playerHandler.Enqueue(playerData);
 
-        // playerPresence, present
-        _ably.Channels.Get("playerPresence").Presence.Subscribe(message =>
-        {
-            Debug.Log($" Received playerPresence <b>{message}</b> from channel <b>GameAction</b>");
-        });
-
-        _ably.Channels.Get("teamInfo").Presence.Subscribe(message =>
-        {
-            Debug.Log($" Received teamInfo <b>{message}</b> from channel <b>GameAction</b>");
+            Debug.Log(playerData);            
+            Debug.Log($" Received gameAction clicks <b>{msg.Data}</b> from channel <b>GameAction</b>");
         });
 
     }
 }
+
+

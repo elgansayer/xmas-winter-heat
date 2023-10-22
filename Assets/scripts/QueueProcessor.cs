@@ -40,7 +40,7 @@ internal class QueueProcessor
     {    
         string teamName = item.player.team.name.Trim();
         TeamSnapshot teamSnapshot = snapshot.teams.FirstOrDefault(x => x.teamName == teamName );
-        teamSnapshot.teamScore = item.toggle / 10.0f;
+        teamSnapshot.teamScore = item.toggle;
     }
 }
 

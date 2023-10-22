@@ -76,9 +76,7 @@ public class AblyManagerBehaviour : MonoBehaviour
         Debug.Log($"Subscribing to channels");
 
         _ably.Channels.Get("gameAction").Subscribe("clicks", (msg) =>
-        {     
-            Debug.Log($"gameAction clicks received");
-            
+        {                 
             string jsonString = msg.Data.ToString();
             // Convert json to IPlayerData
             // IPlayerData playerData = JsonUtility.FromJson<IPlayerData>(jsonString);
@@ -86,8 +84,9 @@ public class AblyManagerBehaviour : MonoBehaviour
                 
             this._playerHandler.Enqueue(playerData);
 
-            Debug.Log(playerData);            
-            Debug.Log($" Received gameAction clicks <b>{msg.Data}</b> from channel <b>GameAction</b>");
+            Debug.Log($"gameAction clicks received");
+            // Debug.Log(playerData);            
+            // Debug.Log($" Received gameAction clicks <b>{msg.Data}</b> from channel <b>GameAction</b>");
         });
 
     }

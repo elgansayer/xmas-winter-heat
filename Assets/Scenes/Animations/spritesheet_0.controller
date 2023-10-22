@@ -85,7 +85,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -521059658324415153}
-    m_Position: {x: 10, y: 280, z: 0}
+    m_Position: {x: 30, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6900727650606667347}
     m_Position: {x: 610, y: 480, z: 0}
@@ -97,13 +97,14 @@ AnimatorStateMachine:
     m_Position: {x: 1190, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 675246703003501845}
-    m_Position: {x: 360, y: 280, z: 0}
+    m_Position: {x: 360, y: 290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours:
   - {fileID: 6627336627873193246}
+  - {fileID: 8610658253152111464}
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
@@ -135,6 +136,19 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-2742712676567300215
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518fc639b1bceebb1b1fc40eae315f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 5
 --- !u!1102 &-521059658324415153
 AnimatorState:
   serializedVersion: 6
@@ -170,7 +184,13 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: spritesheet_0
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: speedMultiplier
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -195,21 +215,22 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -2742712676567300215}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 1bb9f4e504cd2470aa4c5db1a8b24b2e, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: speedMultiplier
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_CycleOffsetParameter: speedMultiplier
+  m_TimeParameter: speedMultiplier
 --- !u!1101 &5104770227789698852
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -244,5 +265,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39c70667854218b4bd3346de833754b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 5
-  timeTillMove: 5
+  speedMultiplier: 5
+--- !u!114 &8610658253152111464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef4f7bb0494ead0db9d54c25b6ccd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

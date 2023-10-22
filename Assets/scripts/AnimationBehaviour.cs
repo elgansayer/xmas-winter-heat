@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class AnimationBehaviour : StateMachineBehaviour
 {
-    public float waitTime = 5f;
-    public float timeTillMove = 5f;
+    public float speedMultiplier;    
+
+    // public float waitTime = 5f;
+    // public float timeTillMove = 5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -16,12 +18,12 @@ public class AnimationBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        timeTillMove -= Time.deltaTime;
-        if (timeTillMove <= 0)
-        {
-            timeTillMove = waitTime;            
-            animator.SetBool("Down", true);
-        }       
+        // timeTillMove -= Time.deltaTime;
+        // if (timeTillMove <= 0)
+        // {
+        //     timeTillMove = waitTime;            
+        //     animator.SetBool("Down", true);
+        // }       
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

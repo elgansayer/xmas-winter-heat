@@ -5,16 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Animator _animator;
-    
-    public string teamName;
-
-
-    public float speedMultiplier;
-    public float duration;
+            
+    private float speedMultiplier;
 
     private float updateSpeedTime;
     private float currentValue;
     private float minSpeed = 0.5f;
+
+    // Set this in the editor
+    public string teamColour;
 
     void Start()
     {
@@ -22,16 +21,10 @@ public class Player : MonoBehaviour
         this.updateSpeedTime = Time.time;  
     }
 
-    public void setupTeam(string teamName)
-    {
-        Debug.Log("Player.setupTeam: " + teamName);
-        this.teamName = teamName;
-    }
-
     public void UpdateSpeed(float speed)
     {
         // Do not dampen the speed increase, give the feedback to the user that they are going faster
-        this.speedMultiplier = Mathf.Clamp(this.minSpeed  + (speed / 10.0f), this.minSpeed, 20.0f);
+        this.speedMultiplier = Mathf.Clamp(this.minSpeed  + (speed / 10.0f), this.minSpeed, 1.0f);
 
         this._animator.SetFloat("speedMultiplier", this.speedMultiplier);
         this._animator.speed = this.speedMultiplier;

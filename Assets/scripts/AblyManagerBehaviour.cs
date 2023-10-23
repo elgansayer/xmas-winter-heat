@@ -13,7 +13,7 @@ public class AblyManagerBehaviour : MonoBehaviour
     private AblyRealtime _ably;
     private ClientOptions _clientOptions;
 
-    private static string _apiKey = "U0ALVg.DLhdIQ:uNrgKHf61SiaJH5XFjHV5bMYCugNvi8vzfZyMNJNp20";
+    private static string _apiKey = "YOUR_API_KEY";
 
     private PlayerHandler _playerHandler;
 
